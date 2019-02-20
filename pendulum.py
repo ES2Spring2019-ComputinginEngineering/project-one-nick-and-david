@@ -18,7 +18,7 @@ def print_system(time,pos,vel):
 pos = [0]
 vel = [0]
 acc = 9.8
-time = np.linspace(0,20,201)
+time = np.linspace(0,20,200)
 print_system(time[0],pos[0],vel[0])
 
 i = 1
