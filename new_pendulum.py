@@ -6,7 +6,7 @@ def update_system(acc,theta,w,time1,time2):
     dt = time2-time1
     accNext = -9.8/l*(math.sin((theta)))-friction*w
     wNext = w+acc*dt
-    thetaNext = theta+w*dt+1/2*acc*dt**2
+    thetaNext = theta+w*dt
     return thetaNext,wNext,accNext
 
 def print_system(time,theta,w):
