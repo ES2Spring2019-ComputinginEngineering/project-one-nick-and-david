@@ -20,10 +20,10 @@ def print_system(time,theta,w):
 l = 1
 theta = [.2]
 w = [0]
-acc = [-9.8/l*(math.sin((theta[0])))]
-time = np.linspace(0,20,10000)
+acc = [-9.8/l*(math.sin(theta[0]))]
+time = np.linspace(0,20,50000)
 print_system(time[0],theta[0],w[0])
-friction = .0001
+friction = .1
 
 
 i = 1
