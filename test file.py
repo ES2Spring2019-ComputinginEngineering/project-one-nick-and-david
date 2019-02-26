@@ -1,7 +1,8 @@
 import microbit
 import random
-a = random.randint(0, 1000)
-with open('datatest.txt', 'w') as my_file:
+a = str(random.randint(0, 1000))
+
+with open('test' + a + '.txt', 'w') as my_file:
     for i in range(200):
         microbit.display.set_pixel(2, 2, 9) #indicator that it is recording
 #        t0 = microbit.running_time()
