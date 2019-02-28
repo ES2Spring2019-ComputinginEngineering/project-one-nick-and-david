@@ -39,7 +39,7 @@ plt.plot(time_list, theta_list, 'ro--')
 plt.xlabel('Time (seconds)')
 plt.ylabel('Theta (rads)')
 plt.title('Theta vs Time')
-plt.xlim((0, 10)) # set x range to -1 to 8
+plt.xlim((0, 14)) # set x range to -1 to 8
 plt.grid()
 
 
@@ -48,7 +48,7 @@ plt.plot(time_list, angular_acc_list, 'ro--')
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Acceleration (rads/s^2)')
 plt.title('Angular vs Time')
-plt.xlim((0, 10)) # set x range to -1 to 8
+plt.xlim((0, 14)) # set x range to -1 to 8
 plt.grid()
 plt.tight_layout()
 plt.show()
