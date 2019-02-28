@@ -10,15 +10,15 @@ import math
 import matplotlib.pyplot as plt
 
 
-time = [0.025]
+time_list = []
 theta_list = []
-w_list = [0]
+#w_list = [0]
 angular_acc_list = []
-cut = 0
+#cut = 0
 
-for i in range(1, 400):
-    cut = cut + 0.025
-    time.append(cut)
+#for i in range(1, 400):
+ #   cut = cut + 0.025
+  #  time.append(cut)
     
 #########################
 
@@ -31,9 +31,12 @@ a = 49                                                       #Fill to find file 
 fin = open('real_pendulum_data' + str(a) + '.txt')
 
 for line in fin:
-    number = line.strip()
-    angular_acc_list.append(int(number))
-    theta = math.asin(int(number)/g)                        #Find theta by using gravity and y-acc
+    a = line.strip()
+    c = a.split(',')
+    time, y = c
+    time_list.append(time)
+    angular_acc_list.append(int(y))
+    theta = math.asin(int(y)/g)                        #Find theta by using gravity and y-acc
     theta_list.append(theta*(180/(math.pi)))
 
 
@@ -46,7 +49,7 @@ for item in angular_acc_list:
 
 plt.figure(figsize=(8,8))
 plt.subplot(3,1,1)
-plt.plot(time, theta_list, 'ro--') 
+plt.plot(time_list, theta_list, 'ro--') 
 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Theta (rads)')
