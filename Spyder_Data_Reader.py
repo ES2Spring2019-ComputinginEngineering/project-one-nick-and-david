@@ -26,7 +26,7 @@ for line in fin:
     time, y = c
     time_list.append(int(time)/1000)                #time into seconds
     angular_acc_list.append(int(y))
-    theta = math.asin(int(y)/g)                        #Find theta by using gravity and y-acc
+    theta = np.arcsin(int(y)/g)                        #Find theta by using gravity and y-acc
     theta_list.append(theta*(180/(math.pi)))
     
 # Apply median filter to both original and noisy wave
@@ -34,10 +34,22 @@ angular_acc_list_filt = sig.medfilt(angular_acc_list)
 theta_list_filt = sig.medfilt(theta_list)
 
 # Find peaks of all waves (started)
-#filt_acc_pks, _ = sig.find_peaks(angular_acc_list_filt)
-#noisy_acc_pks, _ = sig.find_peaks(angular_acc_list)
-#filt_theta_pks, _ = sig.find_peaks(theta_list_filt)
-#noisy_theta_pks, _ = sig.find_peaks(theta_list)
+filt_acc_pks, _ = sig.find_peaks(angular_acc_list_filt)
+noisy_acc_pks, _ = sig.find_peaks(angular_acc_list)
+filt_theta_pks, _ = sig.find_peaks(theta_list_filt)
+noisy_theta_pks, _ = sig.find_peaks(theta_list)
+
+time_of_pks = []
+theta_pks = []
+x=0
+
+for i in range(len(noisy_theta_pks)):
+    z = noisy_theta_pks[x]
+    theta_pks.append(z)
+    b = time_list[z]
+    time_of_pks.append(b)
+    x = x + 1
+    
 
 # for plotter in MU
 #x = 0
@@ -48,7 +60,7 @@ theta_list_filt = sig.medfilt(theta_list)
 plt.figure(figsize=(8,10))
 
 plt.subplot(4,1,1)
-plt.plot(time_list, theta_list, 'ro--') 
+plt.plot(time_list, theta_list, 'ro--') #, noisy_theta_pks, 'b.'
 plt.xlabel('Time (seconds)')
 plt.ylabel('Theta (rads)')
 plt.title('Original Theta vs Time')
@@ -78,5 +90,6 @@ plt.ylabel('Angular Acceleration (rads/s^2)')
 plt.title('Median Filtered Angular Acceleration vs Time')
 plt.xlim((0, 14))
 plt.grid()
+
 plt.tight_layout()
 plt.show()
