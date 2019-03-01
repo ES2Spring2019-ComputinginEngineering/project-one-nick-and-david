@@ -17,7 +17,7 @@ angular_acc_list = []
 
 
 g = -1000                                                    #Microbit gravity constant
-a = 9                                                       #Fill to find file number
+a = 5                                                       #Fill to find file number
 fin = open('real_pendulum_data' + str(a) + '.txt')
 
 for line in fin:
@@ -43,9 +43,9 @@ time_of_pks = []
 theta_pks = []
 x=0
 
-for i in range(len(noisy_theta_pks)):
-    z = noisy_theta_pks[x]
-    theta_pks.append(z)
+for i in range(len(filt_theta_pks)):
+    z = filt_theta_pks[x]
+    theta_pks.append(theta_list_filt[z])
     b = time_list[z]
     time_of_pks.append(b)
     x = x + 1
@@ -60,7 +60,7 @@ for i in range(len(noisy_theta_pks)):
 plt.figure(figsize=(8,10))
 
 plt.subplot(4,1,1)
-plt.plot(time_list, theta_list, 'ro--') #, noisy_theta_pks, 'b.'
+plt.plot(time_list, theta_list, 'ro--')
 plt.xlabel('Time (seconds)')
 plt.ylabel('Theta (rads)')
 plt.title('Original Theta vs Time')
@@ -68,7 +68,7 @@ plt.xlim((0, 14))
 plt.grid()
 
 plt.subplot(4,1,2)
-plt.plot(time_list, theta_list_filt, 'ro--') 
+plt.plot(time_list, theta_list_filt, 'ro--', time_of_pks, theta_pks, 'b.') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Theta (rads)')
 plt.title('Median Filtered Theta vs Time')
