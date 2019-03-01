@@ -6,6 +6,8 @@ Created on Tue Feb 26 19:32:14 2019
 @author: DRFricke
 """
 import math
+import numpy as np
+import scipy.signal as sig
 import matplotlib.pyplot as plt
 
 
@@ -26,6 +28,16 @@ for line in fin:
     angular_acc_list.append(int(y))
     theta = math.asin(int(y)/g)                        #Find theta by using gravity and y-acc
     theta_list.append(theta*(180/(math.pi)))
+    
+# Apply median filter to both original and noisy wave
+angular_acc_list_filt = sig.medfilt(angular_acc_list)
+theta_list_filt = sig.medfilt(theta_list)
+
+# Find peaks of all waves (started)
+#filt_acc_pks, _ = sig.find_peaks(angular_acc_list_filt)
+#noisy_acc_pks, _ = sig.find_peaks(angular_acc_list)
+#filt_theta_pks, _ = sig.find_peaks(theta_list_filt)
+#noisy_theta_pks, _ = sig.find_peaks(theta_list)
 
 # for plotter in MU
 #x = 0
@@ -34,21 +46,37 @@ for line in fin:
 #    x = x + 1
 
 plt.figure(figsize=(8,10))
-plt.subplot(3,1,1)
+
+plt.subplot(4,1,1)
 plt.plot(time_list, theta_list, 'ro--') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Theta (rads)')
-plt.title('Theta vs Time')
-plt.xlim((0, 14)) # set x range to -1 to 8
+plt.title('Original Theta vs Time')
+plt.xlim((0, 14))
 plt.grid()
 
+plt.subplot(4,1,2)
+plt.plot(time_list, theta_list_filt, 'ro--') 
+plt.xlabel('Time (seconds)')
+plt.ylabel('Theta (rads)')
+plt.title('Median Filtered Theta vs Time')
+plt.xlim((0, 14))
+plt.grid()
 
-plt.subplot(3,1,2)
+plt.subplot(4,1,3)
 plt.plot(time_list, angular_acc_list, 'ro--') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Acceleration (rads/s^2)')
 plt.title('Angular vs Time')
-plt.xlim((0, 14)) # set x range to -1 to 8
+plt.xlim((0, 14))
+plt.grid()
+
+plt.subplot(4,1,4)
+plt.plot(time_list, angular_acc_list_filt, 'ro--') 
+plt.xlabel('Time (seconds)')
+plt.ylabel('Angular Acceleration (rads/s^2)')
+plt.title('Median Filtered Angular Acceleration vs Time')
+plt.xlim((0, 14))
 plt.grid()
 plt.tight_layout()
 plt.show()
