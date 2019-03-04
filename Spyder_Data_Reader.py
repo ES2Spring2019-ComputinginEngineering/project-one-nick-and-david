@@ -17,7 +17,7 @@ angular_acc_list = []
 
 #[1.14, 2.537, 3.758, 5.108, 6.361, 7.707, 8.849, 10.309, 11.582, 12.648]
 g = -1000                                                    #Microbit gravity constant
-a = 2                                                       #Fill to find file number
+a = 5                                                       #Fill to find file number
 fin = open('real_pendulum_data' + str(a) + '.txt')
 
 for line in fin:
@@ -30,8 +30,8 @@ for line in fin:
     theta_list.append(theta*(180/(math.pi)))
     
 # Apply median filter to both original and noisy wave
-angular_acc_list_filt = sig.medfilt(angular_acc_list,kernel_size=9)
-theta_list_filt = sig.medfilt(theta_list,kernel_size=9)
+angular_acc_list_filt = sig.medfilt(angular_acc_list,kernel_size=11)
+theta_list_filt = sig.medfilt(theta_list,kernel_size=11)
 
 # Find peaks of all waves (started)
 filt_acc_pks, _ = sig.find_peaks(angular_acc_list_filt)
@@ -76,7 +76,7 @@ average = 0
 for item in avg_period:
     average += item
 
-print(average/len(avg_period))
+print(round(average/len(avg_period),2))
 
 plt.figure(figsize=(8,10))
 
