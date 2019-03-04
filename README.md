@@ -9,6 +9,7 @@ Describe how to use your code.
 To run simulation data:
 
 Run Spyder_code.py
+
 Input length on line 6 as shown:
 ```
 l = 1                                   #input length of pendulum here
