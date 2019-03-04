@@ -50,15 +50,10 @@ for i in range(len(filt_theta_pks)):
     time_of_pks.append(b)
     x = x + 1
     
-
-# for plotter in MU
-#x = 0
-#for item in angular_acc_list:
-#    print((angular_acc_list[x]/100, theta_list[x],))
-#    x = x + 1
     
 new_period = []
 avg_period = []
+average = 0
 
 i = 1
 while i < len(time_of_pks):
@@ -72,11 +67,10 @@ while n < len(new_period):
     avg_period.append(x)
     n = n + 1
 
-average = 0
 for item in avg_period:
     average += item
 
-print(round(average/len(avg_period),2))
+print('Average period:',round(average/len(avg_period),2),'sec')
 
 plt.figure(figsize=(8,10))
 
