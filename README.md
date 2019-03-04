@@ -9,7 +9,7 @@ Describe how to use your code.
 
 
 
-Use Read_data.py to graph the data collected by the microbit
+Use Spyder_data_reader.py to graph the data collected by the microbit
 ti use the correct file number, place that number in 'a' as shown below (example is if file name is 'real_pendulum_data9.txt')
 ```
 a = 9                                                      
