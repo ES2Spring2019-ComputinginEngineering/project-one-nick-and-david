@@ -2,45 +2,39 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 
-def update_system(acc,theta,w,time1,time2):
-    # position and velocity update below
+# initial conditions
+l = 1                                   #input length of pendulum here
+theta = [.2]                            #sets starting angle (max angle) 
+w = [0]
+acc = [-9.8/l*(math.sin(theta[0]))]
+time = np.linspace(0,20,50000)          #creates time steps
+friction = .1
+
+def update_system(acc,theta,w,time1,time2):         # position and velocity update below based on last step
     dt = time2-time1
     accNext = -9.8/l*(math.sin((theta)))-friction*w
     wNext = w+acc*dt
     thetaNext = theta+w*dt
     return thetaNext,wNext,accNext
 
-#def print_system(time,theta,w):
-    #print("TIME:     ", time)
-    #print("Theta: ", theta)
-    #print("Angular Velocity: ", w, "\n")
-    #print((theta, w))
-
-
-# initial conditions
-l = 1
-theta = [.2]
-w = [0]
-acc = [-9.8/l*(math.sin(theta[0]))]
-time = np.linspace(0,20,50000)
-#print_system(time[0],theta[0],w[0])
-friction = .1
-
+def print_system(time,theta,w):                    # prints out data at each time step
+    print("TIME:     ", time)
+    print("Theta: ", theta)
+    print("Angular Velocity: ", w, "\n")
+    print((theta, w))
 
 i = 1
-while i < len(time):
-    # update position and velocity using previous values and time step
+while i < len(time):                                # update position and velocity using previous values and time step
     thetaNext, wNext, accNext = update_system(acc[i-1], theta[i-1],w[i-1],time[i-1],time[i])
     theta.append(thetaNext)
     w.append(wNext)
     acc.append(accNext)
-    #print_system(time[i],theta[i],w[i])
+    print_system(time[i],theta[i],w[i])
     i += 1
 
-plt.figure(figsize=(8,8))   #this gives scale
+plt.figure(figsize=(8,8))                           #this plots Theta vs Time
 plt.subplot(3,1,1)
 plt.plot(time, theta, 'ro--') 
-
 plt.xlabel('Time (seconds)')
 plt.ylabel('Theta (rads)')
 plt.title('Theta vs Time')
@@ -48,7 +42,7 @@ plt.xlim((0, 20)) # set x range to -1 to 8
 plt.grid()
 
 
-plt.subplot(3,1,2)
+plt.subplot(3,1,2)                                   #this plots angular velocity vs time
 plt.plot(time, w, 'ro--') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Velocity (rads/s)')
@@ -57,7 +51,7 @@ plt.xlim((0, 20)) # set x range to -1 to 8
 plt.grid()
 
 
-plt.subplot(3,1,3)
+plt.subplot(3,1,3)                                    #this plots angular acceleration vs time
 plt.plot(time, acc, 'ro--') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Acceleration (rads/s^2)')
