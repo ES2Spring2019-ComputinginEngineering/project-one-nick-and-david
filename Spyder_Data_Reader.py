@@ -15,9 +15,9 @@ time_list = []                                      #Fat cut
 theta_list = []
 angular_acc_list = []
 
-
+#[1.14, 2.537, 3.758, 5.108, 6.361, 7.707, 8.849, 10.309, 11.582, 12.648]
 g = -1000                                                    #Microbit gravity constant
-a = 5                                                       #Fill to find file number
+a = 2                                                       #Fill to find file number
 fin = open('real_pendulum_data' + str(a) + '.txt')
 
 for line in fin:
@@ -30,13 +30,13 @@ for line in fin:
     theta_list.append(theta*(180/(math.pi)))
     
 # Apply median filter to both original and noisy wave
-angular_acc_list_filt = sig.medfilt(angular_acc_list)
-theta_list_filt = sig.medfilt(theta_list)
+angular_acc_list_filt = sig.medfilt(angular_acc_list,kernel_size=9)
+theta_list_filt = sig.medfilt(theta_list,kernel_size=9)
 
 # Find peaks of all waves (started)
 filt_acc_pks, _ = sig.find_peaks(angular_acc_list_filt)
 noisy_acc_pks, _ = sig.find_peaks(angular_acc_list)
-filt_theta_pks, _ = sig.find_peaks(theta_list_filt)
+filt_theta_pks, _ = sig.find_peaks(theta_list_filt,height=4)
 noisy_theta_pks, _ = sig.find_peaks(theta_list)
 
 time_of_pks = []
@@ -56,6 +56,27 @@ for i in range(len(filt_theta_pks)):
 #for item in angular_acc_list:
 #    print((angular_acc_list[x]/100, theta_list[x],))
 #    x = x + 1
+    
+new_period = []
+avg_period = []
+
+i = 1
+while i < len(time_of_pks):
+    if abs(time_of_pks[i-1] - time_of_pks[i]) > .75:
+        new_period.append(time_of_pks[i])
+    i = i + 1
+    
+n = 1
+while n < len(new_period):
+    x = abs(new_period[n-1] - new_period[n])
+    avg_period.append(x)
+    n = n + 1
+
+average = 0
+for item in avg_period:
+    average += item
+
+print(average/len(avg_period))
 
 plt.figure(figsize=(8,10))
 
