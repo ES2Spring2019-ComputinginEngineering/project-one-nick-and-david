@@ -13,11 +13,11 @@ def update_system(acc,theta,w,time1,time2):
 
 
 # initial conditions
-l = 0.225
-theta = [.15]
+l = 0.447
+theta = [.09]
 w = [0]
 acc = [-9.8/l*(math.sin(theta[0]))]
-time = np.linspace(0,10,15000)
+time = np.linspace(0,14,15000)
 #print_system(time[0],theta[0],w[0])
 friction = .1
 
@@ -69,7 +69,7 @@ plt.plot(short_time, short_theta, 'r-', time_of_pks, short_theta_pks, 'b.')
 plt.xlabel('Time (seconds)')
 plt.ylabel('Theta (rads)')
 plt.title('Theta vs Time')
-plt.xlim((0, 10))
+plt.xlim((0, 14))
 plt.grid()
 
 
@@ -78,7 +78,7 @@ plt.plot(time, w, 'ro--')
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Velocity (rads/s)')
 plt.title('Angular Velocity vs Time')
-plt.xlim((0, 10))
+plt.xlim((0, 14))
 plt.grid()
 
 
@@ -87,7 +87,7 @@ plt.plot(time, acc, 'ro--')
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Acceleration (rads/s^2)')
 plt.title('Angular vs Time')
-plt.xlim((0, 10)) # set x range to -1 to 8
+plt.xlim((0, 14)) # set x range to -1 to 8
 plt.grid()
 plt.tight_layout()
 plt.show()

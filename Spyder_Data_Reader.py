@@ -17,7 +17,7 @@ angular_acc_list = []
 
 #[1.14, 2.537, 3.758, 5.108, 6.361, 7.707, 8.849, 10.309, 11.582, 12.648]
 g = -1000                                                    #Microbit gravity constant
-a = 5                                                       #Fill to find file number
+a = 1                                                       #Fill to find file number
 fin = open('real_pendulum_data' + str(a) + '.txt')
 
 for line in fin:
