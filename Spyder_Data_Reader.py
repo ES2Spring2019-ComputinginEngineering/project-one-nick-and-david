@@ -16,7 +16,7 @@ theta_list = []
 angular_acc_list = []
 
 g = -1000                                                    #Microbit gravity constant
-a = 1                                                       #Fill to find file number
+a = 2                                                       #Fill to find file number
 fin = open('real_pendulum_data' + str(a) + '.txt')
 
 for line in fin:
@@ -92,7 +92,7 @@ plt.grid()
 plt.subplot(4,1,3)
 plt.plot(time_list, angular_acc_list, 'ro--') 
 plt.xlabel('Time (seconds)')
-plt.ylabel('Angular Acceleration (Degrees/s^2)')
+plt.ylabel('Angular Acc (Degrees/s^2)')
 plt.title('Angular vs Time')
 plt.xlim((0, 14))
 plt.grid()
@@ -100,7 +100,7 @@ plt.grid()
 plt.subplot(4,1,4)
 plt.plot(time_list, angular_acc_list_filt, 'ro--') 
 plt.xlabel('Time (seconds)')
-plt.ylabel('Angular Acceleration (Degrees/s^2)')
+plt.ylabel('Angular Acc (Degrees/s^2)')
 plt.title('Median Filtered Angular Acceleration vs Time')
 plt.xlim((0, 14))
 plt.grid()

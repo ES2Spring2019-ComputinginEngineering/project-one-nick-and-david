@@ -74,7 +74,7 @@ plt.grid()
 
 
 plt.subplot(3,1,2)
-plt.plot(time, w, 'ro--') 
+plt.plot(time, w, 'ro-') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Velocity (rads/s)')
 plt.title('Angular Velocity vs Time')
@@ -83,7 +83,7 @@ plt.grid()
 
 
 plt.subplot(3,1,3)
-plt.plot(time, acc, 'ro--') 
+plt.plot(time, acc, 'ro-') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Acceleration (rads/s^2)')
 plt.title('Angular vs Time')
