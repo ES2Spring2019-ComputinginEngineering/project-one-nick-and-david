@@ -36,7 +36,7 @@ theta_list_filt = sig.medfilt(theta_list,kernel_size=11)
 # Find peaks of all waves (started)
 filt_acc_pks, _ = sig.find_peaks(angular_acc_list_filt)
 noisy_acc_pks, _ = sig.find_peaks(angular_acc_list)
-filt_theta_pks, _ = sig.find_peaks(theta_list_filt,height=4)
+filt_theta_pks, _ = sig.find_peaks(theta_list_filt,height=3.75)
 noisy_theta_pks, _ = sig.find_peaks(theta_list)
 
 time_of_pks = []
