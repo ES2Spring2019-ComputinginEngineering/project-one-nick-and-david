@@ -1,3 +1,7 @@
+#micro:Bit data collection code
+#Contributers: David Fricke and Nicolas Ragusa
+#This code can be used on a micro:Bit to collect pendulum data
+
 import microbit
 import random
 
