@@ -1,10 +1,15 @@
+#Simulated pendulum data collection and analysis
+#Contributers: David Fricke and Nicolas Ragusa
+#This code takes manually inputted pendulum lengths and simulates a pendulum of this length running
+#and provides graphs of theta vs time, angular velocity vs time, and angular acceleration vs time
+#as well as providing the period of oscillation
+
 import numpy as np
 import math
 import matplotlib.pyplot as plt
 import scipy.signal as sig
 
-def update_system(acc,theta,w,time1,time2):
-    # position and velocity update below
+def update_system(acc,theta,w,time1,time2):     #position, velocity, and acceleration update below based on previous time step's data
     dt = time2-time1
     accNext = -9.8/l*(math.sin((theta)))-friction*w
     wNext = w+acc*dt
@@ -23,8 +28,7 @@ friction = .1
 
 
 i = 1
-while i < len(time):
-    # update position and velocity using previous values and time step
+while i < len(time):        # update position, velocity, and acceleration using previous values and time step
     thetaNext, wNext, accNext = update_system(acc[i-1], theta[i-1],w[i-1],time[i-1],time[i])
     theta.append(thetaNext)
     w.append(wNext)
@@ -60,12 +64,11 @@ while n < len(new_period):
 for item in avg_period:
     average += item
     
-print('Average period:',round(average/len(time_of_pks),2),'sec')
+print('Average period:',round(average/len(time_of_pks),2),'sec')    #prints the average period of oscillation
 
-plt.figure(figsize=(8,10))
+plt.figure(figsize=(8,10))              #plots theta vs time, with peaks denoted in blue
 plt.subplot(3,1,1)
 plt.plot(short_time, short_theta, 'r-', time_of_pks, short_theta_pks, 'b.')
-
 plt.xlabel('Time (seconds)')
 plt.ylabel('Theta (rads)')
 plt.title('Theta vs Time')
@@ -73,7 +76,7 @@ plt.xlim((0, 14))
 plt.grid()
 
 
-plt.subplot(3,1,2)
+plt.subplot(3,1,2)                  #plots angular velocity vs time
 plt.plot(time, w, 'ro-') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Velocity (rads/s)')
@@ -82,7 +85,7 @@ plt.xlim((0, 14))
 plt.grid()
 
 
-plt.subplot(3,1,3)
+plt.subplot(3,1,3)                  #plots angular acceleration vs time
 plt.plot(time, acc, 'ro-') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Acceleration (rads/s^2)')
