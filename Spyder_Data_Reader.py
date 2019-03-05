@@ -1,10 +1,8 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Feb 26 19:32:14 2019
+#
+#Contributers: David Fricke and Nicolas Ragusa
+#
 
-@author: DRFricke
-"""
+
 import math
 import numpy as np
 import scipy.signal as sig
@@ -20,7 +18,7 @@ a = 2                                                       #Fill to find file n
 fin = open('real_pendulum_data' + str(a) + '.txt')
 
 for line in fin:
-    a = line.strip()
+    a = line.strip()                                  #unpacks data from file
     c = a.split(',')
     time, y = c
     time_list.append(int(time)/1000)                #time into seconds
@@ -32,7 +30,7 @@ for line in fin:
 angular_acc_list_filt = sig.medfilt(angular_acc_list,kernel_size=11)
 theta_list_filt = sig.medfilt(theta_list,kernel_size=11)
 
-# Find peaks of all waves (started)
+# Find peaks of all waves 
 filt_acc_pks, _ = sig.find_peaks(angular_acc_list_filt)
 noisy_acc_pks, _ = sig.find_peaks(angular_acc_list)
 filt_theta_pks, _ = sig.find_peaks(theta_list_filt,height=3.75)
