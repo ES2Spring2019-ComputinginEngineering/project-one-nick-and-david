@@ -64,7 +64,7 @@ while n < len(new_period):
 for item in avg_period:
     average += item
     
-print('Average period:',round(average/len(time_of_pks),2),'sec')    #prints the average period of oscillation
+print('Average period:',round(average/len(avg_period),2),'sec')    #prints the average period of oscillation
 
 plt.figure(figsize=(8,10))              #plots theta vs time, with peaks denoted in blue
 plt.subplot(3,1,1)
