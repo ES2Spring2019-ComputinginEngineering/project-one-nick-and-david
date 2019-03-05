@@ -11,8 +11,6 @@ This real-life data is included in the text files "real_pendulum_data#.txt".
 
 ## Instructions
 
-Describe how to use your code.
-
 To run simulation data:
 
 Run Pendulum_Sim_Graphs.py
