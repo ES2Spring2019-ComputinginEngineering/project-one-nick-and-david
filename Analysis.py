@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 length = [0.447, 0.413, 0.346, 0.298, 0.225]          #manually inputted data (can be changed)
 period_actual = [1.26, 1.2, 1.07, 0.99, 0.85]
-period_sim = [1.07, 1.03, 0.97, 0.91, 0.82]
+period_sim = [1.34, 1.29, 1.18, 1.10, 0.95]
 
 plt.figure(figsize=(5,5))                             #sets up graph to display manually inputted data
 plt.subplot(1,1,1)
