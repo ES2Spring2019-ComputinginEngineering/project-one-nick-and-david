@@ -11,7 +11,7 @@ while True:
         microbit.sleep(5000)                                            # 5 second delay
         time0 = microbit.running_time()
         with open('real_pendulum_data' + a + '.txt', 'w') as my_file:   # makes file named 1 to 100
-            for i in range(400):                                        # 400 * .025 seconds = 10 seconds (close!)
+            for i in range(400):                                        
                 microbit.display.set_pixel(2, 2, 9)                     # indicator that it is recording data
                 microbit.sleep(25)                                      # sleep at 25 milliseconds
                 y = str(microbit.accelerometer.get_y())                 # writes data in folder (only y)
