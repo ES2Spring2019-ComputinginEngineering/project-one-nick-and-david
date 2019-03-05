@@ -19,8 +19,8 @@ period_sim = [1.34, 1.29, 1.18, 1.10, 0.95]
 plt.figure(figsize=(5,5))                             #sets up graph to display manually inputted data
 plt.subplot(1,1,1)
 plt.plot(length, period_actual, 'bs', length, period_sim, 'r^')
-plt.annotate('Triangle = Simulated Data', xy=(0.27, 1.2))
-plt.annotate('Square = Actual Data', xy=(0.27, 1.18))
+plt.annotate('Triangle = Simulated Data', xy=(0.27, 1.28))
+plt.annotate('Square = Actual Data', xy=(0.27, 1.26))
 plt.xlabel('Length (meters)') 
 plt.ylabel('Average Period (seconds)')
 plt.title('Period vs Length')
