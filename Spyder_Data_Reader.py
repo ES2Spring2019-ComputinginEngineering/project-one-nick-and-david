@@ -14,7 +14,7 @@ time_list = []
 theta_list = []
 angular_acc_list = []
 
-g = -1000                                                    #Microbit gravity constant
+g = -981                                                    #Microbit gravity constant
 a = 2                                                       #Fill to find file number
 fin = open('real_pendulum_data' + str(a) + '.txt')
 
