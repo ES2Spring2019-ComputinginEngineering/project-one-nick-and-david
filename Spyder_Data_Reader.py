@@ -49,19 +49,19 @@ for i in range(len(filt_theta_pks)):           #makes x and y values to plot the
     x = x + 1
     
     
-new_period = []
+period = []
 avg_period = []
 average = 0
 
 i = 1
 while i < len(time_of_pks):                             #filters out peaks that are too close (identifying the same peak)
     if abs(time_of_pks[i-1] - time_of_pks[i]) > .75:
-        new_period.append(time_of_pks[i])
+        period.append(time_of_pks[i])
     i = i + 1
     
 n = 1
-while n < len(new_period):                              #finds time between neighboring peaks
-    x = abs(new_period[n-1] - new_period[n])
+while n < len(period):                              #finds time between neighboring peaks
+    x = abs(period[n-1] - period[n])
     avg_period.append(x)
     n = n + 1
 
@@ -80,7 +80,7 @@ plt.title('Original Theta vs Time')
 plt.xlim((0, 14))
 plt.grid()
 
-plt.subplot(4,1,2)                              #plots filtered thetas vs time
+plt.subplot(4,1,2)                              #plots filtered thetas vs time and peaks
 plt.plot(time_list, theta_list_filt, 'ro--', time_of_pks, theta_pks, 'b.') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Theta (Degrees)')

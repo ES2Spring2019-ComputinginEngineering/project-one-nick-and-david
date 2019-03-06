@@ -42,19 +42,19 @@ acc_pks, _ = sig.find_peaks(acc)
 time_of_pks = short_time[theta_pks]             #makes x and y values so the peaks can be graphed
 short_theta_pks = short_theta[theta_pks]
 
-new_period = []
+period = []
 avg_period = []
 average = 0
 
 i = 1
 while i < len(time_of_pks):                                 #filters out peaks that are too close together
     if abs(time_of_pks[i-1] - time_of_pks[i]) > .75:
-        new_period.append(time_of_pks[i])
+        period.append(time_of_pks[i])
     i = i + 1
     
 n = 1
-while n < len(new_period):                              #finds time between peaks
-    x = abs(new_period[n-1] - new_period[n])
+while n < len(period):                              #finds time between peaks
+    x = abs(period[n-1] - period[n])
     avg_period.append(x)
     n = n + 1
 
@@ -87,7 +87,7 @@ plt.plot(time, acc, 'ro-')
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angular Acceleration (rads/s^2)')
 plt.title('Angular vs Time')
-plt.xlim((0, 14)) # set x range to -1 to 8
+plt.xlim((0, 14))
 plt.grid()
 plt.tight_layout()
 plt.show()
